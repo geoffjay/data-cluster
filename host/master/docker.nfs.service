@@ -1,0 +1,15 @@
+[Unit]
+Description=NFS4 Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker stop nfs
+ExecStartPre=-/usr/bin/docker rm nfs
+ExecStartPre=/usr/bin/docker pull nfs
+ExecStart=/usr/bin/docker run --name nfs --rm nfs
+
+[Install]
+WantedBy=multi-user.target

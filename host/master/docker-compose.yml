@@ -1,0 +1,11 @@
+nfs4:
+  image: data-cluster/nfs4
+  # Required to load kernel NFS module
+  privileged: true
+  volumes:
+    - ./docker/nfs4/exports:/etc/exports
+    - /srv/data:/srv/data
+  ports:
+    - "111:111/udp"
+    - "2049:2049/tcp"
+    - "2049:2049/udp"
