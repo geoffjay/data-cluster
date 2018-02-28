@@ -2,9 +2,11 @@ nfs:
   image: nfs
   # Required to load kernel NFS module
   privileged: true
+  environment:
+    - SHARED_DIRECTORY=/srv/data
   volumes:
     # NFS exports config
-    - ./docker/nfs4/exports:/etc/exports
+    - ./docker/nfs/exports:/etc/exports
     # Shares
     - /srv/data:/srv/data
   ports:
