@@ -1,6 +1,4 @@
-# Copied from https://github.com/jcbiellikltd/docker-nfs4
-
-FROM alpine:latest
+FROM arm32v6/alpine:latest
 
 RUN apk add --no-cache nfs-utils
 
@@ -11,6 +9,6 @@ COPY s6/config.init /etc/cont-init.d/00-config
 COPY s6/rpcbind.run /etc/services.d/rpcbind/run
 COPY s6/mountd.run /etc/services.d/mountd/run
 
-EXPOSE 111/udp 2049/tcp 2049/udp
+EXPOSE 111/tcp 111/udp 2049/tcp 2049/udp
 
-CMD ["/init"]
+CMD ["/bin/sh /init"]
