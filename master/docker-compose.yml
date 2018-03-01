@@ -1,12 +1,12 @@
 nfs:
   image: nfs
+  # XXX: Should this use docker-compose to build instead?
+  #build: ./docker/nfs
   # Required to load kernel NFS module
   privileged: true
   environment:
     - SHARED_DIRECTORY=/srv/data
   volumes:
-    # NFS exports config
-    - ./docker/nfs/exports:/etc/exports
     # Shares
     - /srv/data:/srv/data
   ports:
